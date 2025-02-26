@@ -99,6 +99,7 @@ export default function WlMint() {
     try {
       if (isPengu) {
         // Check the current allowance
+        console.log('check allowance')
         const allowance = await readContract(config, {
           abi: [
             {
@@ -120,6 +121,7 @@ export default function WlMint() {
 
         if (Number(allowance) < requiredAmount) {
           // First approve Pengu tokens if allowance is insufficient
+          console.log('write allowance')
           const approveHash = await writeContract(config, {
             abi: [
               {
