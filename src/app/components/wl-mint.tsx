@@ -27,9 +27,9 @@ const wlAddresses = [
   "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
   "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
   "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee",
-  "0xfaa8049901d3452a348281CBb8c020b98803fFa4"
+  "0xfaa8049901d3452a348281CBb8c020b98803fFa4",
+  "0xAa2B55A8fdEb8F912f651d00E52c45DB5ADF6818"
 ].map(addr => addr.toLowerCase()); // Convert to lowercase
-
 
 export default function WlMint() {
   const penguPrice = 1200
