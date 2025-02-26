@@ -14,49 +14,13 @@ import OgMint from "./og-mint";
 import MintBtn from "./mintBtn";
 import { config } from "@/lib/config";
 
-const UwUAddress = "0x6e5cC04e76F325663DF8e5A6070005e2929B4db9"
-// const config = getDefaultConfig({
-
-//   appName: 'My RainbowKit App',
-//   projectId: '8f5779a83c8dcba42a42ba629e899d3d',
-//   chains: [mainnet, polygon, optimism, arbitrum, base, abstract],
-//   ssr: true,
-//   wallets: [
-//     {
-//       groupName: 'Recommended',
-//       wallets: [metaMaskWallet, abstractWallet],
-//     },]
-// });
-
-
+const UwUAddress = "0xA858d38212740cdb2365e590B4cE715292890195"
 export default function Mint() {
 
-  const [isEth, setIsEth] = useState(true);
-  const [timeLeft, setTimeLeft] = useState("00:00:00");
+  
   const [ supply, setSupply ] = useState<number | undefined>()
 
-  useEffect(() => {
-    const endTime = new Date("2025-03-30T00:00:00Z").getTime(); // Set your target date here
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = endTime - now;
-
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setTimeLeft(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
-
-      if (distance < 0) {
-        clearInterval(timer);
-        setTimeLeft("ENDED");
-      }
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+ 
   useEffect(() => {
     getSupply()
   }, [])

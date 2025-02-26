@@ -19,7 +19,7 @@ import { parseEther } from "viem";
 import { config } from '@/lib/config';
 declare let window: any;
 
-const UwUAddress = "0x6e5cC04e76F325663DF8e5A6070005e2929B4db9"
+const UwUAddress = "0xA858d38212740cdb2365e590B4cE715292890195"
 const PenguAddress = "0x8BCf8b8fA7BffB5b393FF35D452b2757cfdB3E1E"
 
 const ogAddresses = [
