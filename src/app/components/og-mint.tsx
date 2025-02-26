@@ -19,16 +19,16 @@ import { parseEther } from "viem";
 import { config } from '@/lib/config';
 declare let window: any;
 
-const UwUAddress = "0xA858d38212740cdb2365e590B4cE715292890195"
+const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
 const PenguAddress = "0x8BCf8b8fA7BffB5b393FF35D452b2757cfdB3E1E"
 
 const ogAddresses = [
   "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
   "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
   "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
-  "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee"
+  "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee",
+  "0xfaa8049901d3452a348281CBb8c020b98803fFa4"
 ].map(addr => addr.toLowerCase()); // Convert to lowercase
-
 
 
 export default function OgMint() {
@@ -84,6 +84,7 @@ export default function OgMint() {
       }
     }, 1000);
 
+    
     return () => clearInterval(timer);
   }, []);
 
@@ -158,6 +159,26 @@ export default function OgMint() {
         console.log(receipt);
       } else {
         // Mint with ETH
+        console.log('hana hna')
+              const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+    
+      // Get the Merkle Root
+      const merkleRoot = merkleTree.getHexRoot();
+      console.log("OG Merkle Root:", merkleRoot);
+      
+
+      const simulation = await simulateContract(config, {
+        abi: uwuAbi,
+        address: UwUAddress,
+        functionName: 'ogMint',
+        args: [
+          quantity,
+          false,
+          proof
+        ],
+        value: parseEther((ethPrice * mintAmount).toString()),
+      })
+      console.log(simulation)
         const hash = await writeContract(config, {
           abi: uwuAbi,
           address: UwUAddress,
