@@ -147,7 +147,7 @@ export default function WlMint() {
         console.log('pungu mint')
         const simulation = await simulateContract(config, {
           abi: uwuAbi,
-          address: '0xAa2B55A8fdEb8F912f651d00E52c45DB5ADF6818',
+          address: UwUAddress,
           functionName: 'wlMint',
           args: [
             address,
