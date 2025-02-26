@@ -1,29 +1,8 @@
 [
   {
-    "inputs": [
-      {
-        "internalType": "string",
-        "name": "_name",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
-        "name": "_symbol",
-        "type": "string"
-      },
-      {
-        "internalType": "address",
-        "name": "_owner",
-        "type": "address"
-      }
-    ],
+    "inputs": [],
     "stateMutability": "nonpayable",
     "type": "constructor"
-  },
-  {
-    "inputs": [],
-    "name": "AlreadyInitialized",
-    "type": "error"
   },
   {
     "inputs": [],
@@ -43,11 +22,6 @@
   {
     "inputs": [],
     "name": "BalanceQueryForZeroAddress",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "CreatorTokenBase__InvalidTransferValidatorContract",
     "type": "error"
   },
   {
@@ -72,6 +46,11 @@
   },
   {
     "inputs": [],
+    "name": "MaxPhaseSupplyReached",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "MaxSupplyReached",
     "type": "error"
   },
@@ -92,17 +71,29 @@
   },
   {
     "inputs": [],
-    "name": "NewOwnerIsZeroAddress",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "NoHandoverRequest",
-    "type": "error"
-  },
-  {
-    "inputs": [],
     "name": "NotAllowed",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
     "type": "error"
   },
   {
@@ -122,17 +113,7 @@
   },
   {
     "inputs": [],
-    "name": "RoyaltyOverflow",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "RoyaltyReceiverIsZeroAddress",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "ShouldNotMintToBurnAddress",
+    "name": "ReentrancyGuardReentrantCall",
     "type": "error"
   },
   {
@@ -163,11 +144,6 @@
   {
     "inputs": [],
     "name": "URIQueryForNonexistentToken",
-    "type": "error"
-  },
-  {
-    "inputs": [],
-    "name": "Unauthorized",
     "type": "error"
   },
   {
@@ -224,19 +200,6 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": false,
-        "internalType": "bool",
-        "name": "autoApproved",
-        "type": "bool"
-      }
-    ],
-    "name": "AutomaticApprovalOfTransferValidatorSet",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
         "indexed": true,
         "internalType": "uint256",
         "name": "fromTokenId",
@@ -269,7 +232,7 @@
     "inputs": [
       {
         "indexed": false,
-        "internalType": "enum UwuERC721AC.MintPhase",
+        "internalType": "enum UwuNFT.MintPhase",
         "name": "newPhase",
         "type": "uint8"
       }
@@ -283,33 +246,7 @@
       {
         "indexed": true,
         "internalType": "address",
-        "name": "pendingOwner",
-        "type": "address"
-      }
-    ],
-    "name": "OwnershipHandoverCanceled",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "pendingOwner",
-        "type": "address"
-      }
-    ],
-    "name": "OwnershipHandoverRequested",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "oldOwner",
+        "name": "previousOwner",
         "type": "address"
       },
       {
@@ -392,66 +329,8 @@
     "type": "event"
   },
   {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "oldValidator",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "newValidator",
-        "type": "address"
-      }
-    ],
-    "name": "TransferValidatorUpdated",
-    "type": "event"
-  },
-  {
-    "inputs": [],
-    "name": "DEFAULT_TRANSFER_VALIDATOR",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "ETH_MINT_PRICE",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
     "name": "MAX_SUPPLY",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "PENGU_MINT_PRICE",
     "outputs": [
       {
         "internalType": "uint256",
@@ -481,19 +360,6 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "autoApproveTransfersFromValidator",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
@@ -514,32 +380,25 @@
   },
   {
     "inputs": [],
-    "name": "cancelOwnershipHandover",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
+    "name": "currentPhase",
+    "outputs": [
       {
-        "internalType": "address",
-        "name": "pendingOwner",
-        "type": "address"
+        "internalType": "enum UwuNFT.MintPhase",
+        "name": "",
+        "type": "uint8"
       }
     ],
-    "name": "completeOwnershipHandover",
-    "outputs": [],
-    "stateMutability": "payable",
+    "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "currentPhase",
+    "name": "ethMintPrice",
     "outputs": [
       {
-        "internalType": "enum UwuERC721AC.MintPhase",
+        "internalType": "uint256",
         "name": "",
-        "type": "uint8"
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -587,6 +446,32 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "fcfsMintSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "fcfsMintedCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -599,37 +484,6 @@
       {
         "internalType": "address",
         "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getTransferValidationFunction",
-    "outputs": [
-      {
-        "internalType": "bytes4",
-        "name": "functionSignature",
-        "type": "bytes4"
-      },
-      {
-        "internalType": "bool",
-        "name": "isViewFunction",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "pure",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "getTransferValidator",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "validator",
         "type": "address"
       }
     ],
@@ -653,7 +507,7 @@
     "outputs": [
       {
         "internalType": "bool",
-        "name": "isApproved",
+        "name": "",
         "type": "bool"
       }
     ],
@@ -711,11 +565,37 @@
   },
   {
     "inputs": [],
+    "name": "ogMintSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "ogMintedCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "owner",
     "outputs": [
       {
         "internalType": "address",
-        "name": "result",
+        "name": "",
         "type": "address"
       }
     ],
@@ -742,18 +622,12 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "pendingOwner",
-        "type": "address"
-      }
-    ],
-    "name": "ownershipHandoverExpiresAt",
+    "inputs": [],
+    "name": "penguMintPrice",
     "outputs": [
       {
         "internalType": "uint256",
-        "name": "result",
+        "name": "",
         "type": "uint256"
       }
     ],
@@ -813,43 +687,7 @@
     "inputs": [],
     "name": "renounceOwnership",
     "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "requestOwnershipHandover",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "tokenId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "salePrice",
-        "type": "uint256"
-      }
-    ],
-    "name": "royaltyInfo",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "receiver",
-        "type": "address"
-      },
-      {
-        "internalType": "uint256",
-        "name": "royaltyAmount",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -924,19 +762,6 @@
   {
     "inputs": [
       {
-        "internalType": "bool",
-        "name": "autoApprove",
-        "type": "bool"
-      }
-    ],
-    "name": "setAutomaticApprovalOfTransfersFromValidator",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
         "internalType": "uint256",
         "name": "mintPrice_",
         "type": "uint256"
@@ -976,7 +801,7 @@
   {
     "inputs": [
       {
-        "internalType": "enum UwuERC721AC.MintPhase",
+        "internalType": "enum UwuNFT.MintPhase",
         "name": "phase_",
         "type": "uint8"
       }
@@ -1031,19 +856,6 @@
       }
     ],
     "name": "setSuffix",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "transferValidator_",
-        "type": "address"
-      }
-    ],
-    "name": "setTransferValidator",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -1171,7 +983,7 @@
     ],
     "name": "transferOwnership",
     "outputs": [],
-    "stateMutability": "payable",
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -1240,6 +1052,32 @@
     "name": "wlMint",
     "outputs": [],
     "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "wlMintSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "wlMintedCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]

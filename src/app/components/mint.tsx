@@ -14,7 +14,7 @@ import OgMint from "./og-mint";
 import MintBtn from "./mintBtn";
 import { config } from "@/lib/config";
 
-const UwUAddress = "0x6e5cC04e76F325663DF8e5A6070005e2929B4db9"
+const UwUAddress = "0x8BCf8b8fA7BffB5b393FF35D452b2757cfdB3E1E"
 // const config = getDefaultConfig({
 
 //   appName: 'My RainbowKit App',
