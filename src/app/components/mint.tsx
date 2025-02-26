@@ -14,6 +14,7 @@ import OgMint from "./og-mint";
 import MintBtn from "./mintBtn";
 import { config } from "@/lib/config";
 import WlMint from "./wl-mint";
+import FcfsMint from "./fcfs-mint";
 
 const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
 export default function Mint() {
@@ -74,7 +75,7 @@ export default function Mint() {
               UwUlist
               <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
             </TabsTrigger>
-            <TabsTrigger value="fcfs" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+            <TabsTrigger  value="fcfs" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               FCFS
               <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Closed</span>
             </TabsTrigger>
@@ -93,7 +94,7 @@ export default function Mint() {
           
                     
           <TabsContent value="fcfs">
-            {/* <WlMint /> */}
+            <FcfsMint />
           </TabsContent>
 
           <TabsContent value="public">

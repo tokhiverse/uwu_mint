@@ -22,22 +22,21 @@ declare let window: any;
 const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
 const PenguAddress = "0x8BCf8b8fA7BffB5b393FF35D452b2757cfdB3E1E"
 
-const wlAddresses = [
+const fcfsAddresses = [
   "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
   "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
   "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
   "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee",
-  "0xfaa8049901d3452a348281CBb8c020b98803fFa4",
-  "0xAa2B55A8fdEb8F912f651d00E52c45DB5ADF6818"
+  "0xfaa8049901d3452a348281CBb8c020b98803fFa4"
 ].map(addr => addr.toLowerCase()); // Convert to lowercase
 
-export default function WlMint() {
+export default function FcfsMint() {
   const penguPrice = 1200
   const ethPrice = 0.0069
   const maxSupply = 1200
   const maxMint = 2
 
-  const leafNodes = wlAddresses.map(addr => keccak256(addr));
+  const leafNodes = fcfsAddresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
   const { connector, address } = useAccount();
 
@@ -88,7 +87,7 @@ export default function WlMint() {
     return () => clearInterval(timer);
   }, []);
 
-  const wlMint = async () => { 
+  const fcfsMint = async () => { 
     if (!address || !connector || !window.ethereum) return;
     const hashedAddress = keccak256(address);
     const proof = merkleTree.getHexProof(hashedAddress);
@@ -147,20 +146,21 @@ export default function WlMint() {
         console.log('pungu mint')
         const simulation = await simulateContract(config, {
           abi: uwuAbi,
-          address: '0xAa2B55A8fdEb8F912f651d00E52c45DB5ADF6818',
-          functionName: 'wlMint',
+          address: UwUAddress,
+          functionName: 'fcfsMint',
           args: [
             address,
             quantity,
             true,
             proof
           ],
+          value: parseEther((ethPrice * mintAmount).toString()),
         })
         console.log(simulation)
         const hash = await writeContract(config, {
           abi: uwuAbi,
           address: UwUAddress,
-          functionName: 'wlMint',
+          functionName: 'fcfsMint',
           args: [
             address,
             quantity,
@@ -177,7 +177,7 @@ export default function WlMint() {
       const simulation = await simulateContract(config, {
         abi: uwuAbi,
         address: UwUAddress,
-        functionName: 'wlMint',
+        functionName: 'fcfsMint',
         args: [
           address,
           quantity,
@@ -190,7 +190,7 @@ export default function WlMint() {
         const hash = await writeContract(config, {
           abi: uwuAbi,
           address: UwUAddress,
-          functionName: 'wlMint',
+          functionName: 'fcfsMint',
           args: [
             address,
             quantity,
@@ -225,7 +225,7 @@ export default function WlMint() {
         
         <div>
         <div className="flex justify-center items-center gap-2">
-            <span className="text-sm">Max supply WL</span>
+            <span className="text-sm">Max supply FCFS</span>
         </div>
         <p className="text-lg text-center">{maxSupply}</p>
         </div>
@@ -311,7 +311,7 @@ export default function WlMint() {
               }
 
               return (
-                <button disabled={loading} onClick={wlMint} className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
+                <button disabled={loading} onClick={fcfsMint} className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
                 transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
                 active:shadow-[0_0_0_#000] active:translate-y-2">
                     Mint Now: {isPengu ? mintAmount *  penguPrice + ' $Pengu' : mintAmount *  ethPrice + ' Eth'}
