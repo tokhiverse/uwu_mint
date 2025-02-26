@@ -54,39 +54,39 @@ export default function Mint() {
             <span className="text-l">{supply}/2000</span>
           </div>
           
-          <Progress value={2.59} className="h-3 border-2 border-black" />
+          <Progress value={(supply ? supply / 2000 * 100 : 0)} className="h-3 border-2 border-black" />
         </div>
       </div>
 
       <div className="mt-8">
         {/* <h2 className="text-2xl font-bold mb-4">Mint Groups</h2> */}
         
-        <Tabs defaultValue="discord" className="w-full">
+        <Tabs defaultValue="og" className="w-full">
           <TabsList className="w-full bg-transparent py-8 relative">
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
-            <TabsTrigger value="discord" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+            <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               OG
               <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
             </TabsTrigger>
-            <TabsTrigger value="eco" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+            <TabsTrigger value="wl" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               UwUlist
               <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
             </TabsTrigger>
-            <TabsTrigger value="eco" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+            <TabsTrigger value="fcfs" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               FCFS
-              <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
+              <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Closed</span>
             </TabsTrigger>
-            <TabsTrigger value="public" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
+            <TabsTrigger value="public" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
               <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Closed</span>
             </TabsTrigger>
           </TabsList>
           
-          <TabsContent value="discord" className="mt-4">
+          <TabsContent value="og" className="mt-4">
             <OgMint />
           </TabsContent>
           
-          <TabsContent value="eco">
+          <TabsContent value="wl">
             {/* Similar content structure for Eco Partners */}
           </TabsContent>
           
