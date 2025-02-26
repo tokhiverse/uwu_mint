@@ -113,16 +113,7 @@ export default function MintBtn() {
       
     // };
 
-    const { data: simulationResult } = useSimulateContract({
-      abi: uwuAbi,
-      address: UwUAddress,
-      functionName: 'ogMint',
-      args: [
-        BigInt(1), // quantity
-        false, // usePengu
-        [] // We'll update this with actual proof when minting
-      ],
-    })
+  
 
     const ogMint = async () => { 
       if (!address || !connector || !window.ethereum) return;
@@ -134,36 +125,36 @@ export default function MintBtn() {
       console.log(proof)
       const quantity = BigInt(1); // Number of tokens to mint
       const usePengu = false; // Whether to use Pengu tokens for payment
-      const simulation = await simulateContract(config, {
-        abi: uwuAbi,
-        address: UwUAddress,
-        functionName: 'safeTransferFrom',
-        args: [
-          '0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee',
-          '0x4AE70b51E3c82da5Be3284D90325FFa1898340d7',
-          BigInt(1)
-        ],
-        // value: parseEther("0.0069"), // ETH_MINT_PRICE * quantity
-      })
-      console.log(simulation)
-
-
-      // const hash = await writeContract(config, {
+      // const simulation = await simulateContract(config, {
       //   abi: uwuAbi,
       //   address: UwUAddress,
-      //   functionName: 'ogMint',
+      //   functionName: 'safeTransferFrom',
       //   args: [
-      //     quantity,
-      //     usePengu,
-      //     proof
+      //     '0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee',
+      //     '0x4AE70b51E3c82da5Be3284D90325FFa1898340d7',
+      //     BigInt(1)
       //   ],
-      //   value: parseEther("0.0069"), // ETH_MINT_PRICE * quantity
+      //   // value: parseEther("0.0069"), // ETH_MINT_PRICE * quantity
       // })
-      // const transactionReceipt = await waitForTransactionReceipt(config, {
-      //   hash
-      // })
+      // console.log(simulation)
 
-      // console.log(transactionReceipt)
+
+      const hash = await writeContract(config, {
+        abi: uwuAbi,
+        address: UwUAddress,
+        functionName: 'ogMint',
+        args: [
+          quantity,
+          usePengu,
+          proof
+        ],
+        value: parseEther("0.0069"), // ETH_MINT_PRICE * quantity
+      })
+      const transactionReceipt = await waitForTransactionReceipt(config, {
+        hash
+      })
+
+      console.log(transactionReceipt)
 
   
     }
