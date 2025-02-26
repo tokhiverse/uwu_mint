@@ -146,6 +146,17 @@ export default function OgMint() {
         }
 
         // Then mint with Pengu
+        const simulation = await simulateContract(config, {
+          abi: uwuAbi,
+          address: UwUAddress,
+          functionName: 'ogMint',
+          args: [
+            quantity,
+            true,
+            proof
+          ],
+        })
+        console.log(simulation)
         const hash = await writeContract(config, {
           abi: uwuAbi,
           address: UwUAddress,
