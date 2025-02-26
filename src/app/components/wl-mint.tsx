@@ -144,6 +144,20 @@ export default function WlMint() {
         }
 
         // Then mint with Pengu
+        console.log('pungu mint')
+        const simulation = await simulateContract(config, {
+          abi: uwuAbi,
+          address: UwUAddress,
+          functionName: 'wlMint',
+          args: [
+            address,
+            quantity,
+            true,
+            proof
+          ],
+          value: parseEther((ethPrice * mintAmount).toString()),
+        })
+        console.log(simulation)
         const hash = await writeContract(config, {
           abi: uwuAbi,
           address: UwUAddress,
@@ -151,7 +165,7 @@ export default function WlMint() {
           args: [
             address,
             quantity,
-            false,
+            true,
             proof
           ],
         });
