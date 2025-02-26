@@ -13,6 +13,7 @@ import { connectorsForWallets } from '@rainbow-me/rainbowkit';
 import OgMint from "./og-mint";
 import MintBtn from "./mintBtn";
 import { config } from "@/lib/config";
+import WlMint from "./wl-mint";
 
 const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
 export default function Mint() {
@@ -87,9 +88,14 @@ export default function Mint() {
           </TabsContent>
           
           <TabsContent value="wl">
-            {/* Similar content structure for Eco Partners */}
+            <WlMint />
           </TabsContent>
           
+                    
+          <TabsContent value="fcfs">
+            {/* <WlMint /> */}
+          </TabsContent>
+
           <TabsContent value="public">
             {/* Similar content structure for Public */}
           </TabsContent>
