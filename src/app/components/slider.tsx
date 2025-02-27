@@ -4,11 +4,11 @@ import { useState } from "react";
 
 
 export default function Slider() {
-    const imgs = ['img1.gif', 'img2.png', 'img3.png', 'img4.png', ]
+    const imgs = ['img1.gif', 'img2.png', 'img5.png', 'img4.png', ]
     const [chosenImg , setChosenImg] = useState(imgs[0])
     return (
     <>
-        <div className="aspect-square bg-[#FF6B6B] overflow-hidden border-4 border-[#000] rounded-[50px] shadow-[0_4px_0_#000] mb-4">
+        <div className="aspect-square overflow-hidden border-4 border-[#000] rounded-[50px] shadow-[0_4px_0_#000] mb-4">
             <img  src={chosenImg} alt="Main NFT preview" className="w-full h-full object-contain"/>
             </div>
             <div className="h-[2px] bg-gradient-to-r mb-4 from-[#fff]/0 via-[#fff] to-[#fff]/0"></div>
