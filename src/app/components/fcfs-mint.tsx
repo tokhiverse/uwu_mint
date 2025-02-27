@@ -58,7 +58,7 @@ export default function FcfsMint({maxSupply, ethPrice, maxMint, addresses, UwUAd
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-02-27T18:30:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T18:50:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
@@ -129,7 +129,7 @@ export default function FcfsMint({maxSupply, ethPrice, maxMint, addresses, UwUAd
         
         <div>
         <div className="flex justify-center items-center gap-2">
-            <span className="text-sm">Time to Start</span>
+            <span className="text-sm">Time Left</span>
             {/* <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
             <path d="M12 8v4m0 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
