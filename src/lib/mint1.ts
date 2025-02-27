@@ -1,4 +1,4 @@
-export const ogAddresses = [
+export const mint1 = [
     "0xc72caec5aa6c01d9e0cb0b73e164bd5909a4ae31",
     "0x450557E725F76D1dCf8C23F0Aa836d9eeeAA9D57",
     "0xf280f044D6997E66c2325E13c198b84106d96f92",

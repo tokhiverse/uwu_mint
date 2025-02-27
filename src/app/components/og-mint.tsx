@@ -1,6 +1,5 @@
 'use client';
 
-import { Switch } from "@/components/ui/switch"
 import { useState, useEffect } from "react"
 import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
 import { simulateContract, writeContract, waitForTransactionReceipt, readContract } from '@wagmi/core'
@@ -10,8 +9,6 @@ import { toast } from 'react-toastify';
 
 
 import '@rainbow-me/rainbowkit/styles.css';
-import { useAbstractClient } from "@abstract-foundation/agw-react";
-import { ethers } from 'ethers';
 import { MerkleTree } from 'merkletreejs'
 import keccak256 from 'keccak256'
 import uwuAbi from '../../../UwuERC721AC.json'
@@ -24,15 +21,15 @@ interface WlMintProps {
   ethPrice: number;
   maxSupply: number;
   maxMint: number;
-  ogAddresses: string[];
+  addresses: string[];
   UwUAddress: `0x${string}`;
   ogSupply: number | undefined;
   eligible: boolean
 }
-export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAddress, ogSupply, eligible}: WlMintProps) {
+export default function OgMint({maxSupply, ethPrice, maxMint, addresses, UwUAddress, ogSupply, eligible}: WlMintProps) {
 
 
-  const leafNodes = ogAddresses.map(addr => keccak256(addr));
+  const leafNodes = addresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
   const { connector, address } = useAccount();
   const [timeLeft, setTimeLeft] = useState("00:00:00");

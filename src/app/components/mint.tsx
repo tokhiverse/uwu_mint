@@ -2,9 +2,8 @@
 
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Switch } from "@/components/ui/switch"
 import { useState, useEffect } from "react"
-import { simulateContract, writeContract, waitForTransactionReceipt, readContract } from '@wagmi/core'
+import { readContract } from '@wagmi/core'
 import { MerkleTree } from 'merkletreejs';
 import keccak256 from 'keccak256';
 import {LockKeyhole, LockKeyholeOpen} from 'lucide-react'
@@ -18,9 +17,9 @@ import WlMint from "./wl-mint";
 import FcfsMint from "./fcfs-mint";
 import { useAccount } from "wagmi";
 import PublicMint from "./public-mint";
-import { ogAddresses } from "@/lib/ogaddresses";
-import { wlAddresses } from "@/lib/wlsaddresses";
-import { fcfsAddresses } from "@/lib/fcfsaddresses";
+import { mint1 } from "@/lib/mint1";
+import { adll } from "@/lib/adll";
+import { firstad } from "@/lib/firstad";
 
 
 const UwUAddress = "0x94f6791eAd2E9690f142BD9Df4D2677382edAB0E"
@@ -61,9 +60,9 @@ export default function Mint() {
 
   useEffect(() => {
     if(address){
-      setOgEligible(checkEligibility(address, ogRoot,  ogAddresses))
-      setWLEligible(checkEligibility(address, wlRoot, wlAddresses))
-      setFcfsEligible(checkEligibility(address, fcfsRoot, fcfsAddresses))
+      setOgEligible(checkEligibility(address, ogRoot,  mint1))
+      setWLEligible(checkEligibility(address, wlRoot, adll))
+      setFcfsEligible(checkEligibility(address, fcfsRoot, firstad))
     }
   }, [address, connector])
 
@@ -183,16 +182,16 @@ export default function Mint() {
           </TabsList>
           
           <TabsContent value="og" className="mt-4">
-            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} ogAddresses={ogAddresses} ogSupply={ogSupply} eligible={ogEligible}/>
+            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} addresses={mint1} ogSupply={ogSupply} eligible={ogEligible}/>
           </TabsContent>
           
           <TabsContent value="wl" className="mt-4">
-            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} wlAddresses={wlAddresses} wlSupply={wlSupply} eligible={wlEligible}/>
+            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} addresses={adll} wlSupply={wlSupply} eligible={wlEligible}/>
           </TabsContent>
           
                     
           <TabsContent value="fcfs" className="mt-4">
-            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} fcfsAddresses={fcfsAddresses} fcfsSupply={fcfsSupply} eligible={false}/>
+            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} addresses={firstad} fcfsSupply={fcfsSupply} eligible={false}/>
           </TabsContent>
 
           <TabsContent value="public" className="mt-4">

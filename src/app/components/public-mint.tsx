@@ -10,8 +10,6 @@ import { toast } from 'react-toastify';
 
 
 import '@rainbow-me/rainbowkit/styles.css';
-import { MerkleTree } from 'merkletreejs'
-import keccak256 from 'keccak256'
 import uwuAbi from '../../../UwuERC721AC.json'
 import { parseEther } from "viem";
 import { config } from '@/lib/config';

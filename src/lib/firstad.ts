@@ -1,4 +1,4 @@
-export const fcfsAddresses = [
+export const firstad = [
     "0xcfff685979320598034d27c673937A3EC33beEC3",
     "0xA45F1058BEd58821846533441b5618EF5f00CA5f",
     "0x9790caD423FB53e1094Bf8433C7eAa67cC3889d1",

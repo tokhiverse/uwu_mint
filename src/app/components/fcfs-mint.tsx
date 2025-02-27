@@ -23,15 +23,15 @@ interface WlMintProps {
   ethPrice: number;
   maxSupply: number;
   maxMint: number;
-  fcfsAddresses: string[];
+  addresses: string[];
   UwUAddress: `0x${string}`;
   fcfsSupply: number | undefined;
   eligible: boolean
 }
-export default function FcfsMint({maxSupply, ethPrice, maxMint, fcfsAddresses, UwUAddress, fcfsSupply, eligible}: WlMintProps) {
+export default function FcfsMint({maxSupply, ethPrice, maxMint, addresses, UwUAddress, fcfsSupply, eligible}: WlMintProps) {
   const penguPrice = 1200
 
-  const leafNodes = fcfsAddresses.map(addr => keccak256(addr));
+  const leafNodes = addresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
   const { connector, address } = useAccount();
   const [timeLeft, setTimeLeft] = useState("00:00:00");

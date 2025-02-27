@@ -20,13 +20,13 @@ interface WlMintProps {
   ethPrice: number;
   maxSupply: number;
   maxMint: number;
-  wlAddresses: string[];
+  addresses: string[];
   UwUAddress: `0x${string}`;
   wlSupply: number | undefined;
   eligible: boolean
 }
-export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAddress, wlSupply, eligible}: WlMintProps) {
-  const leafNodes = wlAddresses.map(addr => keccak256(addr));
+export default function WlMint({maxSupply, ethPrice, maxMint, addresses, UwUAddress, wlSupply, eligible}: WlMintProps) {
+  const leafNodes = addresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
   const { connector, address } = useAccount();
 
