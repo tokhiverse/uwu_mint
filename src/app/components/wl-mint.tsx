@@ -22,10 +22,10 @@ interface WlMintProps {
   maxMint: number;
   wlAddresses: string[];
   UwUAddress: `0x${string}`;
-  wlSupply: number | undefined
+  wlSupply: number | undefined;
+  eligible: boolean
 }
-export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAddress, wlSupply}: WlMintProps) {
-  const penguPrice = 1200
+export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAddress, wlSupply, eligible}: WlMintProps) {
   const leafNodes = wlAddresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
   const { connector, address } = useAccount();
@@ -159,8 +159,8 @@ export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAd
             </div> */}
             </div>
             <div className="text-right">
-            <p className="text-xl">{isPengu ? penguPrice + ' $Pengu' : ethPrice + ' Eth'}</p>
-            <p className="text-sm text-gray-500">Total: {isPengu ? mintAmount *  penguPrice + ' $Pengu' : mintAmount *  ethPrice + ' Eth'}</p>
+            <p className="text-xl">{ethPrice + ' Eth'}</p>
+            <p className="text-sm text-gray-500">Total: {mintAmount *  ethPrice + ' Eth'}</p>
             </div>
         </div>
         </div>
@@ -216,10 +216,11 @@ export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAd
               }
 
               return (
-                <button disabled={loading} onClick={wlMint} className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
-                transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
-                active:shadow-[0_0_0_#000] active:translate-y-2">
-                    Mint Now: {isPengu ? mintAmount *  penguPrice + ' $Pengu' : mintAmount *  ethPrice + ' Eth'}
+                <button disabled={loading || !eligible} onClick={wlMint} 
+                  className={`rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
+                  transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
+                  active:shadow-[0_0_0_#000] active:translate-y-2 ${loading || !eligible ? 'opacity-50' : ''}`}>
+                    Mint Now: {mintAmount *  ethPrice + ' Eth'}
                 </button>
               );
             })()}

@@ -26,9 +26,10 @@ interface WlMintProps {
   maxMint: number;
   ogAddresses: string[];
   UwUAddress: `0x${string}`;
-  ogSupply: number | undefined
+  ogSupply: number | undefined;
+  eligible: boolean
 }
-export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAddress, ogSupply}: WlMintProps) {
+export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAddress, ogSupply, eligible}: WlMintProps) {
 
 
   const leafNodes = ogAddresses.map(addr => keccak256(addr));
@@ -206,9 +207,10 @@ export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAd
               }
 
               return (
-                <button disabled={loading} onClick={ogMint} className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
-                transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
-                active:shadow-[0_0_0_#000] active:translate-y-2">
+                <button disabled={loading || !eligible} onClick={ogMint} 
+                  className={`rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
+                  transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
+                  active:shadow-[0_0_0_#000] active:translate-y-2 ${loading || !eligible ? 'opacity-50' : ''}`}>
                     Mint Now: {mintAmount *  ethPrice + ' Eth'}
                 </button>
               );

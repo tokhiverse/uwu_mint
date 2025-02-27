@@ -17,7 +17,7 @@ import { config } from "@/lib/config";
 import WlMint from "./wl-mint";
 import FcfsMint from "./fcfs-mint";
 import { useAccount } from "wagmi";
-import PublicMint from "./punlic-mint";
+import PublicMint from "./public-mint";
 import { ogAddresses } from "@/lib/ogaddresses";
 import { wlAddresses } from "@/lib/wlsaddresses";
 import { fcfsAddresses } from "@/lib/fcfsaddresses";
@@ -183,20 +183,20 @@ export default function Mint() {
           </TabsList>
           
           <TabsContent value="og" className="mt-4">
-            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} ogAddresses={ogAddresses} ogSupply={ogSupply}/>
+            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} ogAddresses={ogAddresses} ogSupply={ogSupply} eligible={ogEligible}/>
           </TabsContent>
           
           <TabsContent value="wl" className="mt-4">
-            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} wlAddresses={wlAddresses} wlSupply={wlSupply}/>
+            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} wlAddresses={wlAddresses} wlSupply={wlSupply} eligible={wlEligible}/>
           </TabsContent>
           
                     
           <TabsContent value="fcfs" className="mt-4">
-            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} fcfsAddresses={fcfsAddresses} fcfsSupply={fcfsSupply}/>
+            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} fcfsAddresses={fcfsAddresses} fcfsSupply={fcfsSupply} eligible={false}/>
           </TabsContent>
 
           <TabsContent value="public" className="mt-4">
-            <PublicMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={2000} maxMint={maxMintPublic} publicSupply={supply}/>
+            <PublicMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={2000} maxMint={maxMintPublic} publicSupply={supply} eligible={false}/>
           </TabsContent>
         </Tabs>
       </div>
