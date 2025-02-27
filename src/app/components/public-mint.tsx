@@ -59,7 +59,9 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        setTimeLeft(`${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`);
+        // Adjusting to UTC time for consistent display
+        const utcHours = (hours + 24) % 24; // Ensure hours are in 0-23 range
+        setTimeLeft(`${utcHours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`);
 
         if (distance < 0) {
             clearInterval(timer);
