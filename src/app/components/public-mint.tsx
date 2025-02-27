@@ -49,7 +49,7 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-02-27T19:00:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T23:00:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
@@ -86,9 +86,8 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
         args: [
           address,
           quantity,
-          false,
         ],
-        value: parseEther((ethPrice * mintAmount).toString()),
+        // value: 0,
       });
       const receipt = await waitForTransactionReceipt(config, { hash });
       setLoading(false)
@@ -121,10 +120,6 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
         <div>
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Time to Start</span>
-            {/* <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-            <path d="M12 8v4m0 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg> */}
         </div>
         <p className="text-lg text-center">{timeLeft}</p>
         </div>
@@ -132,20 +127,7 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
 
     <div className="space-y-4">
         <div className="flex justify-between items-center">
-        <span>Mint Price:</span>
-        <div className="flex items-center gap-4">
-            {/* <div className="flex items-center gap-2">
-            <div className="relative flex items-center gap-2">
-              <img  src="/eth-logo.png" className={`w-10 h-10 rounded-full bg-white p-1 border-2 cursor-pointer transition-opacity duration-200 ${!isPengu ? 'opacity-100 border-[#000]' : 'opacity-40 border-[#79CC9E] scale-75'} bg-[#79CC9E] border-4  shadow-[0_4px_0_#79CC9E] active:shadow-[0_0_0_#79CC9E] transition-all`}onClick={() => setIsPengu(false)}/>
-              <Switch checked={isPengu} onCheckedChange={setIsPengu}className={`${isPengu ? 'bg-[#79CC9E]' : 'bg-[#79CC9E]'} data-[state=checked]:bg-[#79CC9E] data-[state=unchecked]:bg-[#79CC9E]`}/>
-              <img  src="/pengu-logo.jpeg" className={`w-10 h-10 rounded-full bg-[#79CC9E] border-2 cursor-pointer transition-opacity duration-200 ${isPengu ? 'opacity-100 border-[#000] w-[110%]' : 'opacity-40 border-[#79CC9E]  scale-75'} border-4 shadow-[0_4px_0_#79CC9E] active:shadow-[0_0_0_#79CC9E]  transition-all`}onClick={() => setIsPengu(true)}/>
-            </div>
-            </div> */}
-            <div className="text-right">
-            <p className="text-xl font-bold">{ethPrice + ' Eth'}</p>
-            <p className="text-sm text-gray-500">Total: {mintAmount *  ethPrice + ' Eth'}</p>
-            </div>
-        </div>
+        <span>Quantity</span>
         </div>
         
         <div className="flex items-center border-2 border-gray-700 rounded-full">
@@ -205,7 +187,7 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
                     className={`rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
                     transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
                     active:shadow-[0_0_0_#000] active:translate-y-2 ${loading || !eligible ? 'opacity-50' : ''}`}>
-                    Mint Now: {mintAmount *  ethPrice + ' Eth'}
+                    Mint Now
                 </button>
               );
             })()}

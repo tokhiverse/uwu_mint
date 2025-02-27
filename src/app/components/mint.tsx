@@ -40,7 +40,7 @@ export default function Mint() {
   const maxMintWl = 2
   const maxMintfcfs = 2
   const maxMintPublic = 10
-  const ethPrice = 0.0069
+  const ethPrice = 0
 
   const { connector, address } = useAccount();
   const [ supply, setSupply ] = useState<number | undefined>()
@@ -138,19 +138,22 @@ export default function Mint() {
       <div className="mt-8">
         {/* <h2 className="text-2xl font-bold mb-4">Mint Groups</h2> */}
         
-        <Tabs defaultValue="fcfs" className="w-full">
+        <Tabs defaultValue="public" className="w-full">
           <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
           <TabsList className="w-full bg-transparent py-8 relative overflow-x-scroll no-scrollbar">
-            <TabsTrigger value="fcfs" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+            <TabsTrigger value="public" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
                 <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
                 <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
               </span>
+              Public Mint
+              <LockKeyhole size={20} className="ml-2"/>
+              <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Eligible</span>
+            </TabsTrigger>
+
+            <TabsTrigger value="fcfs" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               FCFS
               {
-                fcfsSupply && (fcfsSupply >= maxSupplyFcfs) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                address && fcfsEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
-                address && !fcfsEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
               }
             </TabsTrigger>
@@ -159,24 +162,14 @@ export default function Mint() {
               OG
               
               {
-                // ogSupply && (ogSupply >= maxSupplyOg) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                // ogEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
-                // address && !ogEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
               }
             </TabsTrigger>
             <TabsTrigger value="wl" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               UwUlist
               {
-                // wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                // address && wlEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
-                // address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
               }
-            </TabsTrigger>
-            <TabsTrigger value="public" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
-              <LockKeyhole size={20} className="ml-2"/>
-              <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Eligible</span>
             </TabsTrigger>
           </TabsList>
           <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
@@ -195,7 +188,7 @@ export default function Mint() {
           </TabsContent>
 
           <TabsContent value="public" className="mt-4">
-            <PublicMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={2000} maxMint={maxMintPublic} publicSupply={supply} eligible={false}/>
+            <PublicMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={2000} maxMint={maxMintPublic} publicSupply={supply} eligible={true}/>
           </TabsContent>
         </Tabs>
       </div>
