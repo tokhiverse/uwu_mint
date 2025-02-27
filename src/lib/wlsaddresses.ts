@@ -1,4 +1,4 @@
-export const adll = [
+export const wlAddresses = [
 "0x06e17281a3104669Ee8FEf5AE7E447E8a7693288",
 "0xb4b9cB97c32a1b7857df32ef159D5f0eE23b02BF",
 "0x6b6CD672DE83B53Dd2f11C43657Dc2A68dbF5b00",

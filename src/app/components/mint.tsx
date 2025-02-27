@@ -17,17 +17,20 @@ import WlMint from "./wl-mint";
 import FcfsMint from "./fcfs-mint";
 import { useAccount } from "wagmi";
 import PublicMint from "./public-mint";
-import { mint1 } from "@/lib/mint1";
-import { adll } from "@/lib/adll";
-import { firstad } from "@/lib/firstad";
+// import { mint1 } from "@/lib/mint1";
+// import { adll } from "@/lib/adll";
+// import { firstad } from "@/lib/firstad";
 
+
+import { ogAddresses } from "@/lib/ogaddresses";
+import { wlAddresses } from "@/lib/wlsaddresses";
+import { fcfsAddresses } from "@/lib/fcfsaddresses";
 
 const UwUAddress = "0x94f6791eAd2E9690f142BD9Df4D2677382edAB0E"
 
-const ogRoot = "0x144332943a86bba283072f9281aa928719100405c0f03f066a0209fa63482b3c"
-const wlRoot = "0xf2f5f05db786f0333029de35bc77300774bc48b223176069abfd2d98d463f751"
-const fcfsRoot = "0x83450d3acafc3bf0a9e13e9cec4d2dc79286ed7e659c3a4ee591cfda08967765"
-
+const ogRoot = "0xa8e52747fe1266a4e4ec04653196c7f45dce8dc5ba2be184a3f2080153968cfd"
+const wlRoot = "0xd7dc3246f7b5f9efdcd5c750edc18140f5a4f16142db99384091aaa9fb25db68"
+const fcfsRoot = "0xa8e52747fe1266a4e4ec04653196c7f45dce8dc5ba2be184a3f2080153968cfd"
 
 export default function Mint() {
   const maxSupplyOg = 150
@@ -60,9 +63,9 @@ export default function Mint() {
 
   useEffect(() => {
     if(address){
-      setOgEligible(checkEligibility(address, ogRoot,  mint1))
-      setWLEligible(checkEligibility(address, wlRoot, adll))
-      setFcfsEligible(checkEligibility(address, fcfsRoot, firstad))
+      setOgEligible(checkEligibility(address, ogRoot,  ogAddresses))
+      setWLEligible(checkEligibility(address, wlRoot, wlAddresses))
+      setFcfsEligible(checkEligibility(address, fcfsRoot, fcfsAddresses))
     }
   }, [address, connector])
 
@@ -182,16 +185,16 @@ export default function Mint() {
           <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
 
           <TabsContent value="og" className="mt-4">
-            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} addresses={mint1} ogSupply={ogSupply} eligible={ogEligible}/>
+            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} addresses={ogAddresses} ogSupply={ogSupply} eligible={ogEligible}/>
           </TabsContent>
           
           <TabsContent value="wl" className="mt-4">
-            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} addresses={adll} wlSupply={wlSupply} eligible={wlEligible}/>
+            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} addresses={wlAddresses} wlSupply={wlSupply} eligible={wlEligible}/>
           </TabsContent>
           
                     
           <TabsContent value="fcfs" className="mt-4">
-            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} addresses={firstad} fcfsSupply={fcfsSupply} eligible={false}/>
+            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} addresses={fcfsAddresses} fcfsSupply={fcfsSupply} eligible={false}/>
           </TabsContent>
 
           <TabsContent value="public" className="mt-4">
