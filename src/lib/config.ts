@@ -29,9 +29,9 @@ const connectors = connectorsForWallets(
 
 export const config = createConfig({
   connectors,
-  chains: [abstractTestnet],
+  chains: [abstract],
   transports: {
-    [abstractTestnet.id]: http(),
+    [abstract.id]: http(),
   },
   ssr: true,
 });
