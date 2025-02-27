@@ -37,16 +37,16 @@ export default function Home() {
   const queryClient = new QueryClient();
 
   return (
-    <div className="min-h-screen px-14 bg-cover bg-center bg-[#0F2C23]">
+    <div className="min-h-screen px-4 sm:px-14 bg-cover bg-center bg-[#0F2C23]">
       <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider theme={darkTheme()} >
       <Navbar />
-      <div className="flex gap-24">
-      <div className="w-1/3">
+      <div className="flex flex-col gap-8 sm:flex-row sm:gap-24">
+      <div className="w-full sm:w-1/3">
         <Slider />
       </div>
-      <div className="flex-1 relative">
+      <div className="flex-1 relative my-auto">
         {/* <img src="/person.webp" className="absolute left-1/2 transform -translate-x-1/2 top-[-30px] w-[400px]"/> */}
         <Mint />
       </div>

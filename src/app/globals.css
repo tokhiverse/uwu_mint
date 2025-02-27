@@ -62,7 +62,16 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
-
+  @keyframes customPing {
+    75% {
+      transform: scale(2);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
 @layer base {
   * {
     @apply border-border;
@@ -85,4 +94,17 @@ body {
 
 body{ 
   background-color: #0F2C23;
+}
+
+
+@media (min-width: 768px) { /* Desktop */
+  .tabs-list {
+    flex: 0 0 25%; /* 4 tabs per line */
+  }
+}
+
+@media (max-width: 767px) { /* Mobile */
+  .tabs-list {
+    flex: 0 0 50%; /* 2 tabs per line */
+  }
 }

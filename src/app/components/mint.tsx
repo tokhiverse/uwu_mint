@@ -113,7 +113,7 @@ export default function Mint() {
 
 
   return (
-    <div className="absolute p-8 py-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  w-full bg-[#F8FFE8] border-4 border-[#000] rounded-[100px] shadow-[0_4px_0_#000]">
+    <div className="relative p-8 py-10 w-full bg-[#F8FFE8] border-4 border-[#000] rounded-[100px] shadow-[0_4px_0_#000]">
 
       <h1 className="text-center text-4xl">Mint your UwU</h1>
       
@@ -136,9 +136,8 @@ export default function Mint() {
         {/* <h2 className="text-2xl font-bold mb-4">Mint Groups</h2> */}
         
         <Tabs defaultValue="og" className="w-full">
-          <TabsList className="w-full bg-transparent py-8 relative">
-            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
+          <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
+          <TabsList className="w-full bg-transparent py-8 relative overflow-x-scroll">
             <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               {/* <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
                 <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
@@ -180,7 +179,8 @@ export default function Mint() {
               <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Eligible</span>
             </TabsTrigger>
           </TabsList>
-          
+          <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
+
           <TabsContent value="og" className="mt-4">
             <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} addresses={mint1} ogSupply={ogSupply} eligible={ogEligible}/>
           </TabsContent>
