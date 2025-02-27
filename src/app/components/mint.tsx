@@ -7,7 +7,7 @@ import { useState, useEffect } from "react"
 import { simulateContract, writeContract, waitForTransactionReceipt, readContract } from '@wagmi/core'
 import { MerkleTree } from 'merkletreejs';
 import keccak256 from 'keccak256';
-
+import {LockKeyhole, LockKeyholeOpen} from 'lucide-react'
 
 import uwuAbi from '../../../UwuERC721AC.json'
 
@@ -159,6 +159,7 @@ export default function Mint() {
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
             <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               OG
+              <LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/>
               {
                 ogSupply && (ogSupply >= maxSupplyOg) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
                 ogEligible ? <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span> :
@@ -168,6 +169,7 @@ export default function Mint() {
             </TabsTrigger>
             <TabsTrigger value="wl" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               UwUlist
+              <LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/>
               {
                 wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
                 address && wlEligible ? <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span> :
@@ -177,9 +179,11 @@ export default function Mint() {
             </TabsTrigger>
             <TabsTrigger  value="fcfs" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               FCFS
+              <LockKeyhole size={20} className="ml-2"/>
               <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Closed</span>
             </TabsTrigger>
             <TabsTrigger value="public" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
+              <LockKeyhole size={20} className="ml-2"/>
               <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Closed</span>
             </TabsTrigger>
           </TabsList>
