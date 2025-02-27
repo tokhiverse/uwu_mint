@@ -158,22 +158,29 @@ export default function Mint() {
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
             <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
             <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+              <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
+                <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
+                <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
+              </span>
               OG
-              <LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/>
+              
               {
                 ogSupply && (ogSupply >= maxSupplyOg) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                ogEligible ? <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span> :
-                address && !wlEligible ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span> :
+                ogEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
+                address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 bg-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span> :</> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
               }
             </TabsTrigger>
             <TabsTrigger value="wl" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+              <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
+                <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
+                <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
+              </span>
               UwUlist
-              <LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/>
               {
                 wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                address && wlEligible ? <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span> :
-                address && !wlEligible ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span> :
+                address && wlEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
+                address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 bg-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span> :</> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
               }
             </TabsTrigger>
@@ -184,7 +191,7 @@ export default function Mint() {
             </TabsTrigger>
             <TabsTrigger value="public" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
               <LockKeyhole size={20} className="ml-2"/>
-              <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Closed</span>
+              <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Eligible</span>
             </TabsTrigger>
           </TabsList>
           

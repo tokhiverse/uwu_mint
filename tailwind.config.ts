@@ -55,7 +55,16 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+		animation: {
+			customPing: 'ping 2s infinite',
+		},
+		keyframes: {
+			ping: {
+			  '75%': { transform: 'scale(2)', opacity: '0' },
+			  '100%': { transform: 'scale(2)', opacity: '0' },
+			},
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],
