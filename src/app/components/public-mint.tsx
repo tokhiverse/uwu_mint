@@ -49,7 +49,7 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-02-27T17:00:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T19:00:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
