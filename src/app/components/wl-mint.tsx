@@ -19,25 +19,18 @@ import { parseEther } from "viem";
 import { config } from '@/lib/config';
 declare let window: any;
 
-const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
+// const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
 const PenguAddress = "0x8BCf8b8fA7BffB5b393FF35D452b2757cfdB3E1E"
 
-const wlAddresses = [
-  "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
-  "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
-  "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
-  "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee",
-  "0xfaa8049901d3452a348281CBb8c020b98803fFa4",
-  "0xAa2B55A8fdEb8F912f651d00E52c45DB5ADF6818",
-  "0x55B5f463b80bd2C9c1e54fD115c74E69cD7E201b"
-].map(addr => addr.toLowerCase()); // Convert to lowercase
-
-export default function WlMint() {
+interface WlMintProps {
+  ethPrice: number;
+  maxSupply: number;
+  maxMint: number;
+  wlAddresses: string[];
+  UwUAddress: `0x${string}`
+}
+export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAddress}: WlMintProps) {
   const penguPrice = 1200
-  const ethPrice = 0.0069
-  const maxSupply = 1200
-  const maxMint = 2
-
   const leafNodes = wlAddresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
   const { connector, address } = useAccount();
@@ -67,25 +60,24 @@ export default function WlMint() {
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-03-30T00:00:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T17:00:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = endTime - now;
+        const now = new Date().getTime();
+        const distance = endTime - now;
 
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      setTimeLeft(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+        setTimeLeft(`${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`);
 
-      if (distance < 0) {
-        clearInterval(timer);
-        setTimeLeft("ENDED");
-      }
+        if (distance < 0) {
+            clearInterval(timer);
+            setTimeLeft("ENDED");
+        }
     }, 1000);
 
-    
     return () => clearInterval(timer);
   }, []);
 
@@ -228,18 +220,14 @@ export default function WlMint() {
         
         <div>
         <div className="flex justify-center items-center gap-2">
-            <span className="text-sm">Max supply WL</span>
+            <span className="text-sm">Max supply UwUList</span>
         </div>
         <p className="text-lg text-center">{maxSupply}</p>
         </div>
         
         <div>
         <div className="flex justify-center items-center gap-2">
-            <span className="text-sm">Time Left</span>
-            {/* <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
-            <path d="M12 8v4m0 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-            </svg> */}
+            <span className="text-sm">Time to Start</span>
         </div>
         <p className="text-lg text-center">{timeLeft}</p>
         </div>
@@ -250,11 +238,11 @@ export default function WlMint() {
         <span>Mint Price:</span>
         <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-            <div className="relative flex items-center gap-2">
+            {/* <div className="relative flex items-center gap-2">
               <img  src="/eth-logo.png" className={`w-10 h-10 rounded-full bg-white p-1 border-2 cursor-pointer transition-opacity duration-200 ${!isPengu ? 'opacity-100 border-[#000]' : 'opacity-40 border-[#79CC9E] scale-75'} bg-[#79CC9E] border-4  shadow-[0_4px_0_#79CC9E] active:shadow-[0_0_0_#79CC9E] transition-all`}onClick={() => setIsPengu(false)}/>
               <Switch checked={isPengu} onCheckedChange={setIsPengu}className={`${isPengu ? 'bg-[#79CC9E]' : 'bg-[#79CC9E]'} data-[state=checked]:bg-[#79CC9E] data-[state=unchecked]:bg-[#79CC9E]`}/>
               <img  src="/pengu-logo.jpeg" className={`w-10 h-10 rounded-full bg-[#79CC9E] border-2 cursor-pointer transition-opacity duration-200 ${isPengu ? 'opacity-100 border-[#000] w-[110%]' : 'opacity-40 border-[#79CC9E]  scale-75'} border-4 shadow-[0_4px_0_#79CC9E] active:shadow-[0_0_0_#79CC9E]  transition-all`}onClick={() => setIsPengu(true)}/>
-            </div>
+            </div> */}
             </div>
             <div className="text-right">
             <p className="text-xl font-bold">{isPengu ? penguPrice + ' $Pengu' : ethPrice + ' Eth'}</p>

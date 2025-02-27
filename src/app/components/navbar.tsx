@@ -20,12 +20,9 @@ export default function Navbar() {
 
   return (
     <div className="mb-8 flex justify-between items-center">
-        <img src="/uwulogo.jpg" alt="Uwu_Logo" className="w-12 h-12 rounded-xl" />
-        {/* <button className="rounded-[100px] text-sm py-3 px-6 bg-[#0F2C23] text-white border-4 border-[#000] shadow-[0_4px_0_#000] 
-        transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
-        active:shadow-[0_0_0_#000] active:translate-y-2">
-        Connect your Wallet
-        </button> */}
+      <div className="w-12 h-12 bg-[#F8FFE8] border-4 border-[#000] rounded-xl shadow-[0_4px_0_#000] overflow-hidden">
+        <img src="/logo.png" alt="Uwu_Logo" className=" w-full h-full" />
+        </div>
         <ConnectBtn />
     </div>
   )
@@ -80,7 +77,7 @@ export const ConnectBtn = () => {
               }
 
               return (
-                <button onClick={() => disconnect()} className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
+                <button onClick={() => disconnect()} className="rounded-[100px] py-4 px-6 bg-[#F8FFE8] text-[#0F2C23] mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
                 transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
                 active:shadow-[0_0_0_#000] active:translate-y-2">
                     Disconnect: {account.displayName}
