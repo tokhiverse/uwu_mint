@@ -169,9 +169,11 @@ export default function Mint() {
               UwUlist
               {
                 wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                wlEligible ? <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span> :
+                address && wlEligible ? <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span> :
+                address && !wlEligible ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
-              }            </TabsTrigger>
+              }
+            </TabsTrigger>
             <TabsTrigger  value="fcfs" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               FCFS
               <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Closed</span>
