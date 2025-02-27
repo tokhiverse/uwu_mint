@@ -20,13 +20,22 @@ export default function Navbar() {
 
 
   return (
-    <div className="mb-8 flex justify-between items-center">
+    <div className="my-8 flex justify-between items-center">
       <div className="w-12 h-12 bg-[#F8FFE8] border-4 border-[#000] rounded-xl shadow-[0_4px_0_#000] overflow-hidden">
         <Link href={'https://uwutter.com/'} target="_blank">
           <img src="/logo.png" alt="Uwu_Logo" className=" w-full h-full" />
         </Link>
         </div>
-        <ConnectBtn />
+        <div className="flex gap-4 items-center">
+        <div className="w-12 h-12 bg-[#F8FFE8] border-4 border-[#000] rounded-xl shadow-[0_4px_0_#000] overflow-hidden p-2">
+          <Link href={'https://magiceden.io/collections/abstract/0x94f6791eAd2E9690f142BD9Df4D2677382edAB0E/'} target="_blank">
+            <img src="/magic-eden.png" alt="Uwu_Logo" className=" w-full h-full" />
+          </Link>
+          </div>
+          <ConnectBtn />
+        </div>
+        {/* <ConnectBtn /> */}
+
     </div>
   )
 }
@@ -61,7 +70,7 @@ export const ConnectBtn = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
+                  <button className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white border-4 border-[#000] shadow-[0_4px_0_#000] 
                   transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
                   active:shadow-[0_0_0_#000] active:translate-y-2" onClick={openConnectModal} type="button">
                     Connect your Wallet
@@ -71,7 +80,7 @@ export const ConnectBtn = () => {
 
               if (chain.unsupported) {
                 return (
-                  <button className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
+                  <button className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white border-4 border-[#000] shadow-[0_4px_0_#000] 
                   transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
                   active:shadow-[0_0_0_#000] active:translate-y-2" onClick={openChainModal} type="button">
                     Wrong network
@@ -80,7 +89,7 @@ export const ConnectBtn = () => {
               }
 
               return (
-                <button onClick={() => disconnect()} className="rounded-[100px] py-4 px-6 bg-[#F8FFE8] text-[#0F2C23] mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
+                <button onClick={() => disconnect()} className="text-sm  rounded-[100px] py-4 px-6 bg-[#F8FFE8] text-[#0F2C23] border-4 border-[#000] shadow-[0_4px_0_#000] 
                 transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
                 active:shadow-[0_0_0_#000] active:translate-y-2">
                     Disconnect: {account.displayName}
