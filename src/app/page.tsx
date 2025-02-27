@@ -46,7 +46,7 @@ export default function Home() {
       <div className="w-full sm:w-1/3">
         <Slider />
       </div>
-      <div className="flex-1 relative my-auto">
+      <div className="flex-1 relative my-auto mb-8">
         {/* <img src="/person.webp" className="absolute left-1/2 transform -translate-x-1/2 top-[-30px] w-[400px]"/> */}
         <Mint />
       </div>
