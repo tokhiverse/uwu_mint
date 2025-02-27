@@ -137,7 +137,7 @@ export default function Mint() {
         
         <Tabs defaultValue="og" className="w-full">
           <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
-          <TabsList className="w-full bg-transparent py-8 relative overflow-x-scroll">
+          <TabsList className="w-full bg-transparent py-8 relative overflow-x-scroll no-scrollbar">
             <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               {/* <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
                 <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
