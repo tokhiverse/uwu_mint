@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 export default function Slider() {
-    const imgs = ['1.png', '2.png', '3.png', '4.png', ]
+    const imgs = ['img1.gif', 'img2.png', 'img3.png', 'img4.png', ]
     const [chosenImg , setChosenImg] = useState(imgs[0])
     return (
     <>

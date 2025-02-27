@@ -17,44 +17,27 @@ import { config } from "@/lib/config";
 import WlMint from "./wl-mint";
 import FcfsMint from "./fcfs-mint";
 import { useAccount } from "wagmi";
+import PublicMint from "./punlic-mint";
+import { ogAddresses } from "@/lib/ogaddresses";
+import { wlAddresses } from "@/lib/wlsaddresses";
+import { fcfsAddresses } from "@/lib/fcfsaddresses";
 
-const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
 
-const ogAddresses = [
-  "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
-  "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
-  "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
-  "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee"
-].map(addr => addr.toLowerCase());
+const UwUAddress = "0x56E47F83EE538e4c2037502e976009d6CD5CC5aC"
 
-const ogRoot = "0xbbf2ca95edf2ef666590500598c9c6a6bc702df481228e384e162de2fd678e68"
-
-const wlAddresses = [
-  "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
-  "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
-  "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
-  "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee"
-].map(addr => addr.toLowerCase());
-
-const wlRoot = "0xbbf2ca95edf2ef666590500598c9c6a6bc702df481228e384e162de2fd678e68"
-
-const fcfsAddresses = [
-  "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
-  "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
-  "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
-  "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee"
-].map(addr => addr.toLowerCase());
-
-const fcfsRoot = "0xbbf2ca95edf2ef666590500598c9c6a6bc702df481228e384e162de2fd678e68"
+const ogRoot = "0x144332943a86bba283072f9281aa928719100405c0f03f066a0209fa63482b3c"
+const wlRoot = "0xf2f5f05db786f0333029de35bc77300774bc48b223176069abfd2d98d463f751"
+const fcfsRoot = "0x83450d3acafc3bf0a9e13e9cec4d2dc79286ed7e659c3a4ee591cfda08967765"
 
 
 export default function Mint() {
   const maxSupplyOg = 150
   const maxSupplyWl = 1250
-  const maxSupplyfcfs = 200
-  const maxMintyOg = 3
+  const maxSupplyFcfs = 200
+  const maxMintOg = 3
   const maxMintWl = 2
   const maxMintfcfs = 2
+  const maxMintPublic = 10
   const ethPrice = 0.0069
 
   const { connector, address } = useAccount();
@@ -167,7 +150,7 @@ export default function Mint() {
               {
                 ogSupply && (ogSupply >= maxSupplyOg) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
                 ogEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
-                address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span> :</> :
+                address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
               }
             </TabsTrigger>
@@ -180,23 +163,27 @@ export default function Mint() {
               {
                 wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
                 address && wlEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
-                address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span> :</> :
+                address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
               }
             </TabsTrigger>
-            <TabsTrigger  value="fcfs" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+            <TabsTrigger value="fcfs" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
               FCFS
-              <LockKeyhole size={20} className="ml-2"/>
-              <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span>
+              {
+                fcfsSupply && (fcfsSupply >= maxSupplyFcfs) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
+                address && fcfsEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
+                address && !fcfsEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
+                <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
+              }
             </TabsTrigger>
-            <TabsTrigger value="public" disabled className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
+            <TabsTrigger value="public" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
               <LockKeyhole size={20} className="ml-2"/>
               <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Eligible</span>
             </TabsTrigger>
           </TabsList>
           
           <TabsContent value="og" className="mt-4">
-            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintWl} ogAddresses={ogAddresses} ogSupply={ogSupply}/>
+            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} ogAddresses={ogAddresses} ogSupply={ogSupply}/>
           </TabsContent>
           
           <TabsContent value="wl" className="mt-4">
@@ -204,22 +191,15 @@ export default function Mint() {
           </TabsContent>
           
                     
-          <TabsContent value="fcfs">
-            <FcfsMint />
+          <TabsContent value="fcfs" className="mt-4">
+            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} fcfsAddresses={fcfsAddresses} fcfsSupply={fcfsSupply}/>
           </TabsContent>
 
-          <TabsContent value="public">
-            {/* Similar content structure for Public */}
+          <TabsContent value="public" className="mt-4">
+            <PublicMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={2000} maxMint={maxMintPublic} publicSupply={supply}/>
           </TabsContent>
         </Tabs>
       </div>
-
-      {/* <div className="flex justify-center">
-        <ConnectBtn />
-      </div> */}
-      
-      
-    
 
     </div>
   )

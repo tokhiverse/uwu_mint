@@ -10,8 +10,6 @@ import { toast } from 'react-toastify';
 
 
 import '@rainbow-me/rainbowkit/styles.css';
-import { useAbstractClient } from "@abstract-foundation/agw-react";
-import { ethers } from 'ethers';
 import { MerkleTree } from 'merkletreejs'
 import keccak256 from 'keccak256'
 import uwuAbi from '../../../UwuERC721AC.json'
@@ -19,30 +17,22 @@ import { parseEther } from "viem";
 import { config } from '@/lib/config';
 declare let window: any;
 
-const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
-const PenguAddress = "0x8BCf8b8fA7BffB5b393FF35D452b2757cfdB3E1E"
 
-const fcfsAddresses = [
-  "0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db",
-  "0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2",
-  "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4",
-  "0xAAb7feaA8b337BA8e87d06F4e62029E9BF0975Ee",
-  "0xfaa8049901d3452a348281CBb8c020b98803fFa4",
-  "0xAa2B55A8fdEb8F912f651d00E52c45DB5ADF6818",
-  "0x55B5f463b80bd2C9c1e54fD115c74E69cD7E201b"
-].map(addr => addr.toLowerCase()); // Convert to lowercase
 
-export default function FcfsMint() {
+interface WlMintProps {
+  ethPrice: number;
+  maxSupply: number;
+  maxMint: number;
+  fcfsAddresses: string[];
+  UwUAddress: `0x${string}`;
+  fcfsSupply: number | undefined
+}
+export default function FcfsMint({maxSupply, ethPrice, maxMint, fcfsAddresses, UwUAddress, fcfsSupply}: WlMintProps) {
   const penguPrice = 1200
-  const ethPrice = 0.0069
-  const maxSupply = 1200
-  const maxMint = 2
 
   const leafNodes = fcfsAddresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
   const { connector, address } = useAccount();
-
-  const [isPengu, setIsPengu] = useState(false);
   const [timeLeft, setTimeLeft] = useState("00:00:00");
   const [mintAmount, setMintAmount] = useState(1);
 
@@ -67,25 +57,24 @@ export default function FcfsMint() {
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-03-30T00:00:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T17:00:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = endTime - now;
+        const now = new Date().getTime();
+        const distance = endTime - now;
 
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      setTimeLeft(`${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`);
+        setTimeLeft(`${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`);
 
-      if (distance < 0) {
-        clearInterval(timer);
-        setTimeLeft("ENDED");
-      }
+        if (distance < 0) {
+            clearInterval(timer);
+            setTimeLeft("ENDED");
+        }
     }, 1000);
 
-    
     return () => clearInterval(timer);
   }, []);
 
@@ -98,113 +87,18 @@ export default function FcfsMint() {
     const loadingToast = toast.loading("Processing your transaction...");
 
     try {
-      if (isPengu) {
-        // Check the current allowance
-        const allowance = await readContract(config, {
-          abi: [
-            {
-              name: "allowance",
-              type: "function",
-              inputs: [
-                { name: "owner", type: "address" },
-                { name: "spender", type: "address" }
-              ],
-              outputs: [{ name: "", type: "uint256" }]
-            }
-          ],
-          address: PenguAddress,
-          functionName: 'allowance',
-          args: [address, UwUAddress],
-        });
-
-        const requiredAmount = BigInt(penguPrice * mintAmount);
-
-        if (Number(allowance) < requiredAmount) {
-          // First approve Pengu tokens if allowance is insufficient
-          const approveHash = await writeContract(config, {
-            abi: [
-              {
-                name: "approve",
-                type: "function",
-                inputs: [
-                  { name: "spender", type: "address" },
-                  { name: "amount", type: "uint256" }
-                ],
-                outputs: [{ name: "", type: "bool" }]
-              }
-            ],
-            address: PenguAddress,
-            functionName: 'approve',
-            args: [
-              UwUAddress,
-              requiredAmount
-            ],
-          });
-
-          await waitForTransactionReceipt(config, { hash: approveHash });
-        }
-
-        // Then mint with Pengu
-        console.log('pungu mint')
-        const simulation = await simulateContract(config, {
-          abi: uwuAbi,
-          address: UwUAddress,
-          functionName: 'fcfsMint',
-          args: [
-            address,
-            quantity,
-            true,
-            proof
-          ],
-          value: parseEther((ethPrice * mintAmount).toString()),
-        })
-        console.log(simulation)
-        const hash = await writeContract(config, {
-          abi: uwuAbi,
-          address: UwUAddress,
-          functionName: 'fcfsMint',
-          args: [
-            address,
-            quantity,
-            true,
-            proof
-          ],
-        });
-        
-        const receipt = await waitForTransactionReceipt(config, { hash });
-        console.log(receipt);
-      } else {
-        // Mint with ETH      
-        console.log('kan simulti')
-      const simulation = await simulateContract(config, {
+      const hash = await writeContract(config, {
         abi: uwuAbi,
         address: UwUAddress,
         functionName: 'fcfsMint',
         args: [
           address,
           quantity,
-          false,
           proof
         ],
         value: parseEther((ethPrice * mintAmount).toString()),
-      })
-      console.log(simulation)
-        const hash = await writeContract(config, {
-          abi: uwuAbi,
-          address: UwUAddress,
-          functionName: 'fcfsMint',
-          args: [
-            address,
-            quantity,
-            false,
-            proof
-          ],
-          value: parseEther((ethPrice * mintAmount).toString()),
-        });
-        
-        const receipt = await waitForTransactionReceipt(config, { hash });
-        console.log(receipt);
-      }
+      });
+      const receipt = await waitForTransactionReceipt(config, { hash });
       setLoading(false)
       toast.dismiss(loadingToast)
       toast.success("Minting successful!");
@@ -229,12 +123,12 @@ export default function FcfsMint() {
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Max supply FCFS</span>
         </div>
-        <p className="text-lg text-center">{maxSupply}</p>
+          <p className="text-lg text-center">{fcfsSupply}/{maxSupply}</p>
         </div>
         
         <div>
         <div className="flex justify-center items-center gap-2">
-            <span className="text-sm">Time Left</span>
+            <span className="text-sm">Time to Start</span>
             {/* <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2"/>
             <path d="M12 8v4m0 4h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -248,16 +142,16 @@ export default function FcfsMint() {
         <div className="flex justify-between items-center">
         <span>Mint Price:</span>
         <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
+            {/* <div className="flex items-center gap-2">
             <div className="relative flex items-center gap-2">
               <img  src="/eth-logo.png" className={`w-10 h-10 rounded-full bg-white p-1 border-2 cursor-pointer transition-opacity duration-200 ${!isPengu ? 'opacity-100 border-[#000]' : 'opacity-40 border-[#79CC9E] scale-75'} bg-[#79CC9E] border-4  shadow-[0_4px_0_#79CC9E] active:shadow-[0_0_0_#79CC9E] transition-all`}onClick={() => setIsPengu(false)}/>
               <Switch checked={isPengu} onCheckedChange={setIsPengu}className={`${isPengu ? 'bg-[#79CC9E]' : 'bg-[#79CC9E]'} data-[state=checked]:bg-[#79CC9E] data-[state=unchecked]:bg-[#79CC9E]`}/>
               <img  src="/pengu-logo.jpeg" className={`w-10 h-10 rounded-full bg-[#79CC9E] border-2 cursor-pointer transition-opacity duration-200 ${isPengu ? 'opacity-100 border-[#000] w-[110%]' : 'opacity-40 border-[#79CC9E]  scale-75'} border-4 shadow-[0_4px_0_#79CC9E] active:shadow-[0_0_0_#79CC9E]  transition-all`}onClick={() => setIsPengu(true)}/>
             </div>
-            </div>
+            </div> */}
             <div className="text-right">
-            <p className="text-xl font-bold">{isPengu ? penguPrice + ' $Pengu' : ethPrice + ' Eth'}</p>
-            <p className="text-sm text-gray-500">Total: {isPengu ? mintAmount *  penguPrice + ' $Pengu' : mintAmount *  ethPrice + ' Eth'}</p>
+            <p className="text-xl font-bold">{ethPrice + ' Eth'}</p>
+            <p className="text-sm text-gray-500">Total: {mintAmount *  ethPrice + ' Eth'}</p>
             </div>
         </div>
         </div>
@@ -316,7 +210,7 @@ export default function FcfsMint() {
                 <button disabled={loading} onClick={fcfsMint} className="rounded-[100px] py-4 px-6 bg-[#0F2C23] text-white mt-8 border-4 border-[#000] shadow-[0_4px_0_#000] 
                 transition-all duration-150 hover:shadow-[0_8px_0_#000] hover:-translate-y-1 
                 active:shadow-[0_0_0_#000] active:translate-y-2">
-                    Mint Now: {isPengu ? mintAmount *  penguPrice + ' $Pengu' : mintAmount *  ethPrice + ' Eth'}
+                    Mint Now: {mintAmount *  ethPrice + ' Eth'}
                 </button>
               );
             })()}

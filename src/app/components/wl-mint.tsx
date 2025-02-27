@@ -1,17 +1,11 @@
 'use client';
 
-import { Switch } from "@/components/ui/switch"
 import { useState, useEffect } from "react"
-import { ConnectButton, darkTheme } from '@rainbow-me/rainbowkit';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { simulateContract, writeContract, waitForTransactionReceipt, readContract } from '@wagmi/core'
-
-import { useAccount, useConnect, useDisconnect, useWriteContract, useWaitForTransactionReceipt, useSimulateContract } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { toast } from 'react-toastify';
-
-
 import '@rainbow-me/rainbowkit/styles.css';
-import { useAbstractClient } from "@abstract-foundation/agw-react";
-import { ethers } from 'ethers';
 import { MerkleTree } from 'merkletreejs'
 import keccak256 from 'keccak256'
 import uwuAbi from '../../../UwuERC721AC.json'
@@ -91,114 +85,33 @@ export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAd
     const loadingToast = toast.loading("Processing your transaction...");
 
     try {
-      if (isPengu) {
-        // Check the current allowance
-        console.log('check allowance')
-        const allowance = await readContract(config, {
-          abi: [
-            {
-              name: "allowance",
-              type: "function",
-              inputs: [
-                { name: "owner", type: "address" },
-                { name: "spender", type: "address" }
-              ],
-              outputs: [{ name: "", type: "uint256" }]
-            }
-          ],
-          address: PenguAddress,
-          functionName: 'allowance',
-          args: [address, UwUAddress],
-        });
-
-        const requiredAmount = BigInt(penguPrice * mintAmount);
-
-        if (Number(allowance) < requiredAmount) {
-          // First approve Pengu tokens if allowance is insufficient
-          console.log('write allowance')
-          const approveHash = await writeContract(config, {
-            abi: [
-              {
-                name: "approve",
-                type: "function",
-                inputs: [
-                  { name: "spender", type: "address" },
-                  { name: "amount", type: "uint256" }
-                ],
-                outputs: [{ name: "", type: "bool" }]
-              }
-            ],
-            address: PenguAddress,
-            functionName: 'approve',
-            args: [
-              UwUAddress,
-              requiredAmount
-            ],
-          });
-
-          await waitForTransactionReceipt(config, { hash: approveHash });
-        }
-
-        // Then mint with Pengu
-        console.log('pungu mint')
-        const simulation = await simulateContract(config, {
-          abi: uwuAbi,
-          address: UwUAddress,
-          functionName: 'wlMint',
-          args: [
-            address,
-            quantity,
-            true,
-            proof
-          ],
-        })
-        console.log(simulation)
-        const hash = await writeContract(config, {
-          abi: uwuAbi,
-          address: UwUAddress,
-          functionName: 'wlMint',
-          args: [
-            address,
-            quantity,
-            true,
-            proof
-          ],
-        });
-        
-        const receipt = await waitForTransactionReceipt(config, { hash });
-        console.log(receipt);
-      } else {
-        // Mint with ETH      
-        console.log('kan simulti')
-      const simulation = await simulateContract(config, {
+    // const simulation = await simulateContract(config, {
+    //   abi: uwuAbi,
+    //   address: UwUAddress,
+    //   functionName: 'wlMint',
+    //   args: [
+    //     address,
+    //     quantity,
+    //     false,
+    //     proof
+    //   ],
+    //   value: parseEther((ethPrice * mintAmount).toString()),
+    // })
+    // console.log(simulation)
+      const hash = await writeContract(config, {
         abi: uwuAbi,
         address: UwUAddress,
         functionName: 'wlMint',
         args: [
           address,
           quantity,
-          false,
           proof
         ],
         value: parseEther((ethPrice * mintAmount).toString()),
-      })
-      console.log(simulation)
-        const hash = await writeContract(config, {
-          abi: uwuAbi,
-          address: UwUAddress,
-          functionName: 'wlMint',
-          args: [
-            address,
-            quantity,
-            false,
-            proof
-          ],
-          value: parseEther((ethPrice * mintAmount).toString()),
-        });
-        
-        const receipt = await waitForTransactionReceipt(config, { hash });
-        console.log(receipt);
-      }
+      });
+      
+      const receipt = await waitForTransactionReceipt(config, { hash });
+      
       setLoading(false)
       toast.dismiss(loadingToast)
       toast.success("Minting successful!");
