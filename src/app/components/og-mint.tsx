@@ -26,9 +26,10 @@ interface WlMintProps {
   maxSupply: number;
   maxMint: number;
   ogAddresses: string[];
-  UwUAddress: `0x${string}`
+  UwUAddress: `0x${string}`;
+  ogSupply: number | undefined
 }
-export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAddress}: WlMintProps) {
+export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAddress, ogSupply}: WlMintProps) {
   const penguPrice = 1200
   // const ethPrice = 0.0069
   // const maxSupply = 200
@@ -225,7 +226,7 @@ export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAd
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Max supply OG</span>
         </div>
-        <p className="text-lg text-center">{maxSupply}</p>
+        <p className="text-lg text-center">{ogSupply}/{maxSupply}</p>
         </div>
         
         <div>

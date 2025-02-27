@@ -27,9 +27,10 @@ interface WlMintProps {
   maxSupply: number;
   maxMint: number;
   wlAddresses: string[];
-  UwUAddress: `0x${string}`
+  UwUAddress: `0x${string}`;
+  wlSupply: number | undefined
 }
-export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAddress}: WlMintProps) {
+export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAddress, wlSupply}: WlMintProps) {
   const penguPrice = 1200
   const leafNodes = wlAddresses.map(addr => keccak256(addr));
   const merkleTree = new MerkleTree(leafNodes, keccak256, {sortPairs: true})
@@ -222,7 +223,7 @@ export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAd
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Max supply UwUList</span>
         </div>
-        <p className="text-lg text-center">{maxSupply}</p>
+        <p className="text-lg text-center">{wlSupply}/{maxSupply}</p>
         </div>
         
         <div>

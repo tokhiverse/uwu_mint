@@ -182,11 +182,11 @@ export default function Mint() {
           </TabsList>
           
           <TabsContent value="og" className="mt-4">
-            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintWl} ogAddresses={ogAddresses} />
+            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintWl} ogAddresses={ogAddresses} ogSupply={ogSupply}/>
           </TabsContent>
           
-          <TabsContent value="wl">
-            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} wlAddresses={wlAddresses} />
+          <TabsContent value="wl" className="mt-4">
+            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} wlAddresses={wlAddresses} wlSupply={wlSupply}/>
           </TabsContent>
           
                     
