@@ -14,6 +14,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 
 import '@rainbow-me/rainbowkit/styles.css';
+import Link from "next/link";
 
 export default function Navbar() {
 
@@ -21,7 +22,9 @@ export default function Navbar() {
   return (
     <div className="mb-8 flex justify-between items-center">
       <div className="w-12 h-12 bg-[#F8FFE8] border-4 border-[#000] rounded-xl shadow-[0_4px_0_#000] overflow-hidden">
-        <img src="/logo.png" alt="Uwu_Logo" className=" w-full h-full" />
+        <Link href={'https://uwutter.com/'} target="_blank">
+          <img src="/logo.png" alt="Uwu_Logo" className=" w-full h-full" />
+        </Link>
         </div>
         <ConnectBtn />
     </div>
