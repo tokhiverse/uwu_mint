@@ -168,8 +168,8 @@ export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAd
       } else {
         // Mint with ETH
         console.log('hana hna')
-              const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
-    
+        const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
+
       // Get the Merkle Root
       const merkleRoot = merkleTree.getHexRoot();
       console.log("OG Merkle Root:", merkleRoot);
@@ -244,7 +244,7 @@ export default function OgMint({maxSupply, ethPrice, maxMint, ogAddresses, UwUAd
             <div className="flex items-center gap-2">
             </div>
             <div className="text-right">
-            <p className="text-xl font-bold">{isPengu ? penguPrice + ' $Pengu' : ethPrice + ' Eth'}</p>
+            <p className="text-xl ">{isPengu ? penguPrice + ' $Pengu' : ethPrice + ' Eth'}</p>
             <p className="text-sm text-gray-500">Total: {isPengu ? mintAmount *  penguPrice + ' $Pengu' : mintAmount *  ethPrice + ' Eth'}</p>
             </div>
         </div>

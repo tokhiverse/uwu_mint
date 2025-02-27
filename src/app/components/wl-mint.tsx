@@ -246,7 +246,7 @@ export default function WlMint({maxSupply, ethPrice, maxMint, wlAddresses, UwUAd
             </div> */}
             </div>
             <div className="text-right">
-            <p className="text-xl font-bold">{isPengu ? penguPrice + ' $Pengu' : ethPrice + ' Eth'}</p>
+            <p className="text-xl">{isPengu ? penguPrice + ' $Pengu' : ethPrice + ' Eth'}</p>
             <p className="text-sm text-gray-500">Total: {isPengu ? mintAmount *  penguPrice + ' $Pengu' : mintAmount *  ethPrice + ' Eth'}</p>
             </div>
         </div>
