@@ -58,7 +58,7 @@ export default function FcfsMint({maxSupply, ethPrice, maxMint, addresses, UwUAd
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-02-27T18:50:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-19:00:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
