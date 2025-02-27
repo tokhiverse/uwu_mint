@@ -129,7 +129,7 @@ export default function OgMint({maxSupply, ethPrice, maxMint, addresses, UwUAddr
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Max supply OG</span>
         </div>
-        <p className="text-lg text-center">{ogSupply}/{maxSupply}</p>
+        <p className="text-lg text-center">{maxSupply}</p>
         </div>
         
         <div>

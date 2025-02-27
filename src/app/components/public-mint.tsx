@@ -115,7 +115,7 @@ export default function PublicMint({maxSupply, ethPrice, maxMint, UwUAddress, pu
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Max supply Public</span>
         </div>
-          <p className="text-lg text-center">{publicSupply}/{maxSupply}</p>
+          <p className="text-lg text-center">{maxSupply}</p>
         </div>
         
         <div>

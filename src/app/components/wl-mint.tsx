@@ -134,7 +134,7 @@ export default function WlMint({maxSupply, ethPrice, maxMint, addresses, UwUAddr
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Max supply UwUList</span>
         </div>
-        <p className="text-lg text-center">{wlSupply}/{maxSupply}</p>
+        <p className="text-lg text-center">{maxSupply}</p>
         </div>
         
         <div>

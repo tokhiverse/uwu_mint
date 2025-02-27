@@ -124,7 +124,7 @@ export default function FcfsMint({maxSupply, ethPrice, maxMint, addresses, UwUAd
         <div className="flex justify-center items-center gap-2">
             <span className="text-sm">Max supply FCFS</span>
         </div>
-          <p className="text-lg text-center">{fcfsSupply}/{maxSupply}</p>
+          <p className="text-lg text-center">{maxSupply}</p>
         </div>
         
         <div>

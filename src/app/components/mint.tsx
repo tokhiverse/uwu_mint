@@ -138,42 +138,39 @@ export default function Mint() {
       <div className="mt-8">
         {/* <h2 className="text-2xl font-bold mb-4">Mint Groups</h2> */}
         
-        <Tabs defaultValue="og" className="w-full">
+        <Tabs defaultValue="fcfs" className="w-full">
           <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
           <TabsList className="w-full bg-transparent py-8 relative overflow-x-scroll no-scrollbar">
-            <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
-              <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
-                <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
-                <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
-              </span>
-              OG
-              
-              {
-                ogSupply && (ogSupply >= maxSupplyOg) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                ogEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
-                address && !ogEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
-                <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
-              }
-            </TabsTrigger>
-            <TabsTrigger value="wl" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
-              <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
-                <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
-                <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
-              </span>
-              UwUlist
-              {
-                wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
-                address && wlEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
-                address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
-                <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
-              }
-            </TabsTrigger>
             <TabsTrigger value="fcfs" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+              <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
+                <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
+                <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
+              </span>
               FCFS
               {
                 fcfsSupply && (fcfsSupply >= maxSupplyFcfs) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
                 address && fcfsEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
                 address && !fcfsEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
+                <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
+              }
+            </TabsTrigger>
+
+            <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+              OG
+              
+              {
+                // ogSupply && (ogSupply >= maxSupplyOg) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
+                // ogEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
+                // address && !ogEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
+                <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
+              }
+            </TabsTrigger>
+            <TabsTrigger value="wl" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
+              UwUlist
+              {
+                // wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
+                // address && wlEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
+                // address && !wlEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
                 <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
               }
             </TabsTrigger>
