@@ -182,16 +182,16 @@ export default function Mint() {
           <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
 
           <TabsContent value="og" className="mt-4">
-            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} addresses={ogAddresses} ogSupply={ogSupply} eligible={ogEligible}/>
+            <OgMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyOg} maxMint={maxMintOg} addresses={ogAddresses} ogSupply={ogSupply} eligible={false}/>
           </TabsContent>
           
           <TabsContent value="wl" className="mt-4">
-            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} addresses={wlAddresses} wlSupply={wlSupply} eligible={wlEligible}/>
+            <WlMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyWl} maxMint={maxMintWl} addresses={wlAddresses} wlSupply={wlSupply} eligible={false}/>
           </TabsContent>
           
                     
           <TabsContent value="fcfs" className="mt-4">
-            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} addresses={fcfsAddresses} fcfsSupply={fcfsSupply} eligible={false}/>
+            <FcfsMint UwUAddress={UwUAddress} ethPrice={ethPrice} maxSupply={maxSupplyFcfs} maxMint={maxMintfcfs} addresses={fcfsAddresses} fcfsSupply={fcfsSupply} eligible={fcfsEligible}/>
           </TabsContent>
 
           <TabsContent value="public" className="mt-4">
