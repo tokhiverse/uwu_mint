@@ -173,7 +173,7 @@ export default function Mint() {
                 fcfsSupply && (fcfsSupply >= maxSupplyFcfs) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :
                 address && fcfsEligible ? <><LockKeyholeOpen size={20} className="ml-2 text-[#79CC9E]"/><span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Eligible</span></> :
                 address && !fcfsEligible ? <><LockKeyhole size={20} className="ml-2 text-gray-500"/><span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Not Eligible</span></> :
-                <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Live</span>
+                <span className="ml-2 text-xs px-2 py-1 bg-[#79CC9E] text-black rounded-full">Closed</span>
               }
             </TabsTrigger>
             <TabsTrigger value="public" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">Public Mint
