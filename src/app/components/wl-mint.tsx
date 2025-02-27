@@ -53,7 +53,7 @@ export default function WlMint({maxSupply, ethPrice, maxMint, addresses, UwUAddr
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-02-27T18:10:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T18:30:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
