@@ -56,7 +56,7 @@ export default function OgMint({maxSupply, ethPrice, maxMint, addresses, UwUAddr
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-02-27T17:10:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T18:10:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
@@ -134,7 +134,7 @@ export default function OgMint({maxSupply, ethPrice, maxMint, addresses, UwUAddr
         
         <div>
         <div className="flex justify-center items-center gap-2">
-            <span className="text-sm">Time to Start</span>
+            <span className="text-sm">Time Left</span>
         </div>
         <p className="text-lg text-center">{timeLeft}</p>
         </div>

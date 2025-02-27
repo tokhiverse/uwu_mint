@@ -139,10 +139,10 @@ export default function Mint() {
           <div className="w-full h-[2px] bg-gradient-to-r from-[#0F2C23]/0 via-[#79CC9E] to-[#0F2C23]/0"></div>
           <TabsList className="w-full bg-transparent py-8 relative overflow-x-scroll no-scrollbar">
             <TabsTrigger value="og" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
-              {/* <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
+              <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
                 <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
                 <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
-              </span> */}
+              </span>
               OG
               
               {
@@ -153,10 +153,10 @@ export default function Mint() {
               }
             </TabsTrigger>
             <TabsTrigger value="wl" className="data-[state=active]:text-[#79CC9E] data-[state=active]:border-b-2 data-[state=active]:border-[#79CC9E]">
-              {/* <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
+              <span className="shrink-0 size-2 relative flex items-center justify-center mr-2" >
                 <span className="absolute size-2.5 rounded-full bg-[#79CC9E] animate-ping"></span>
                 <span className="relative block size-2 bg-[#79CC9E] rounded-full"></span>
-              </span> */}
+              </span>
               UwUlist
               {
                 wlSupply && (wlSupply >= maxSupplyWl) ? <span className="ml-2 text-xs px-2 py-1 bg-gray-500 text-white rounded-full">Sold out</span> :

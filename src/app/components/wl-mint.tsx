@@ -13,8 +13,6 @@ import { parseEther } from "viem";
 import { config } from '@/lib/config';
 declare let window: any;
 
-// const UwUAddress = "0xBa35962B23919f43cB70Df32e6dC59b159e141F0"
-const PenguAddress = "0x8BCf8b8fA7BffB5b393FF35D452b2757cfdB3E1E"
 
 interface WlMintProps {
   ethPrice: number;
@@ -55,7 +53,7 @@ export default function WlMint({maxSupply, ethPrice, maxMint, addresses, UwUAddr
   };
 
   useEffect(() => {
-    const endTime = new Date("2025-02-27T17:10:00Z").getTime(); // Set your target date here
+    const endTime = new Date("2025-02-27T18:10:00Z").getTime(); // Set your target date here
 
     const timer = setInterval(() => {
         const now = new Date().getTime();
@@ -141,7 +139,7 @@ export default function WlMint({maxSupply, ethPrice, maxMint, addresses, UwUAddr
         
         <div>
         <div className="flex justify-center items-center gap-2">
-            <span className="text-sm">Time to Start</span>
+            <span className="text-sm">Time Left</span>
         </div>
         <p className="text-lg text-center">{timeLeft}</p>
         </div>
